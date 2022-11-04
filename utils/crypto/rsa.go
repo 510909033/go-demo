@@ -8,6 +8,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
+	"log"
 	"strings"
 )
 
@@ -202,6 +203,9 @@ func RsaSign(src, privateKey []byte, hash crypto.Hash) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
+		log.Println("use parsePKCS8PrivateKey")
+	} else {
+		log.Println("use parsePKCS1PrivateKey")
 	}
 	return RsaSignWithKey(src, pri, hash)
 }

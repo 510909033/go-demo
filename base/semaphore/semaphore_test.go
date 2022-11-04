@@ -21,6 +21,7 @@ func TestSemaphore(t *testing.T) {
 	for i := range task {
 		// 请求一个worker，如果没有worker可用，会阻塞在这里，直到某个worker被释放
 		if err := sema.Acquire(ctx, 1); err != nil {
+			t.Error(err)
 			break
 		}
 
@@ -28,8 +29,9 @@ func TestSemaphore(t *testing.T) {
 		go func(i int) {
 			// 释放一个worker
 			defer sema.Release(1)
-			time.Sleep(100 * time.Millisecond) // 模拟一个耗时操作
+			time.Sleep(3000 * time.Millisecond) // 模拟一个耗时操作
 			task[i] = i + 1
+			t.Log("task ", i)
 		}(i)
 	}
 

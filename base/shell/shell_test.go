@@ -1,10 +1,19 @@
-package shell
+package main
 
 import (
 	"os/exec"
 	"runtime"
 	"testing"
 )
+
+func TestPphCmd(t *testing.T) {
+		out, err := exec.Command("php", "/tmp/a1.php").Output()
+		if err != nil {
+			t.Error(err)
+		}
+		t.Log(string(out))
+
+}
 
 func TestExecCmd(t *testing.T) {
 	sysType := runtime.GOOS
