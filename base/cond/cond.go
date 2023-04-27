@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 func main() {
@@ -29,6 +30,7 @@ func main() {
 		}
 	}()
 
+	time.Sleep(time.Second)
 	// 生产者
 	for i := 0; i < 100; i++ {
 		// 生产者开始生产
