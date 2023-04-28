@@ -168,6 +168,9 @@ func main() {
 	}
 }
 
+//	func Stop(stop <-chan bool) {
+//		close(stop)
+//	}
 func getmem() {
 	runtime.GOMAXPROCS(0)
 	// // 获取当前进程的基本信息
